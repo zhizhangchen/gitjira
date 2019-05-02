@@ -34,8 +34,8 @@ def createUserHash(username, password):
 
 
 def getBranch():
-    regex = re.compile('^\w+/[^-]+-\w+$')
-    branch = Git().status().split('\n')[0].split("# On branch ")[1]
+    regex = re.compile('^[^_]+_.*$')
+    branch = Git().status().split('\n')[0].split("On branch ")[1]
     if not regex.match(branch):
         raise GitBranchError("Not on valid gitjira branch")
     return branch
@@ -45,8 +45,8 @@ def createBranch(ticket, jira, transition=True):
     response = jira.ticket(ticket)
 
     key = response['key']
-    issueType = response['fields']['issuetype']['name']
-    branchName = '%s/%s' % (issueType.lower(), key)
+    summary = response['fields']['summary']
+    branchName = '%s_%s' % (key, re.sub(r'^[\./]|\.\.|@{|[\/\.]$|^@$|[~^:\x00-\x20\x7F\s?*[\\]', '-', summary))
 
     Git().branch(branchName)
 
@@ -56,7 +56,7 @@ def createBranch(ticket, jira, transition=True):
 
 def commitBranch(jira):
     branch = getBranch()
-    ticket = branch.split('/')[1]
+    ticket = branch.split('_')[0]
 
     response = jira.ticket(ticket)
 
