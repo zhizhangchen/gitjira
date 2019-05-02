@@ -31,8 +31,8 @@ from error import HTTPError
 
 class Workflow(object):
     BACKLOG     = 11
-    IN_PROGRESS = 31
-    REVIEW      = 81
+    IN_PROGRESS = 4
+    REVIEW      = 711
     DONE        = 41
 
 
