@@ -44,6 +44,6 @@ class Git(object):
         return self._run(['checkout', '-b', branch])
 
     def commit(self, message=None):
-        args = ['commit'] if message is None else ['commit', '-m', message, '-e']
+        args = ['commit'] if message is None else ['commit', '-a', '-m', message, '-e']
         return self._run(args, caller=subprocess.call)
 
