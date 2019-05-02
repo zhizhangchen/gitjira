@@ -74,6 +74,8 @@ class Jira(object):
 
         if reply.getcode() >= 400:
             raise HTTPError("Request failed with status %d, url: %s" % (reply.getcode(), url))
-        return json.load(reply)
-
+        text = reply.read()         #storing the data
+        if text:
+            text = json.loads(text);
+        return text
 
