@@ -46,7 +46,7 @@ def createBranch(ticket, jira, transition=True):
 
     key = response['key']
     summary = response['fields']['summary']
-    branchName = '%s_%s' % (key, re.sub(r'^[\./]|\.\.|@{|[\/\.]$|^@$|[~^:\x00-\x20\x7F\s?*[\\]', '-', summary))
+    branchName = '%s_%s' % (key, re.sub(r'^[\./]|\.\.|@{|[\/\.]$|^@$|[~^:\x00-\x20\x7F\s?*[\\\']', '-', summary))
 
     Git().branch(branchName)
 
