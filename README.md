@@ -33,7 +33,7 @@ The last step needs to be run as root if you want to install gitjira for all use
 ##### Local Install
 ```console
 cd <path-to-code>
-python setup.py install --home=~/local
+python setup.py install --home=~/.local
 ```
 installing locally will require the below steps as well 
 

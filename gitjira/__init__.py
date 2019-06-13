@@ -46,7 +46,7 @@ def createBranch(ticket, jira, transition=True):
 
     key = response['key']
     summary = response['fields']['summary']
-    branchName = '%s_%s' % (key, re.sub(r'^[\./]|\.\.|@{|[\/\.]$|^@$|[~^:\x00-\x20\x7F\s?*[\\]', '-', summary))
+    branchName = '%s_%s' % (key, re.sub(r'^[\./]|\.\.|@{|[\/\.]$|^@$|[~^:\x00-\x20\x7F\s?*[\\\']', '-', summary))
 
     Git().branch(branchName)
 
@@ -60,8 +60,8 @@ def commitBranch(jira):
 
     response = jira.ticket(ticket)
 
-    msg = '%s - %s\n\n# TO ABORT THIS COMMIT, DELETE THE COMMIT MESSAGE ABOVE AND SAVE THIS FILE!' \
-            % (response['key'], response['fields']['summary'])
+    msg = '%s - %s\n\n%s/browse/%s\n# TO ABORT THIS COMMIT, DELETE THE COMMIT MESSAGE ABOVE AND SAVE THIS FILE!' \
+            % (response['key'], response['fields']['summary'], jira.conf.base_url, ticket)
 
     Git().commit(msg)
 
