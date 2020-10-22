@@ -9,7 +9,7 @@ Installation
 
 ##### Either clone the repo
 ```console
-git clone git@github.com:jairamc/gitjira.git
+git clone git@github.com:zhizhangchen/gitjira.git
 ```
 
 ##### Or download latest tag
@@ -38,8 +38,8 @@ python setup.py install --home=~/.local
 installing locally will require the below steps as well 
 
 ```console
-export PATH=$PATH:$HOME/local/bin
-export PYTHONPATH=$HOME/local/lib/python
+export PATH=$PATH:$HOME/.local/bin
+export PYTHONPATH=$HOME/.local/lib/python
 ```
 
 Features
